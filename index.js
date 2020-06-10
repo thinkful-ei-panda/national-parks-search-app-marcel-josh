@@ -13,7 +13,7 @@ function formatQueryParams(params) {
 
 function displayResults (responseJson) {
   // if there are previous results, remove them
-  // console.log(responseJson);
+  console.log(responseJson);
   $('#results-list').empty();
   // iterate thru the items array
   for (let i = 0; i < responseJson.data.length; i++) {
@@ -30,12 +30,12 @@ function displayResults (responseJson) {
     // display the results section
     $('#results').removeClass('hidden');
   }
-}
+};
 
 function getParks (query, maxResults=10) {
   const params = {
     api_Key: apiKey,
-    stateCode: query,
+    q: query,
     limit: maxResults
   };
 
@@ -62,8 +62,11 @@ function watchForm() {
     event.preventDefault();
     const searchTerm = $('#js-search-term').val();
     const maxResults = $('#js-max-results').val();
+    // console.log(searchTerm);
+    // console.log(maxResults);
     getParks(searchTerm, maxResults);
   });
+  
 }
 
 $(watchForm);
